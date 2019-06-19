@@ -1,4 +1,7 @@
-/bin
-/obj
-/openid-configuration.json
-/client-config.json
+.vs/
+.git/
+bin/
+obj/
+openid-configuration.json
+client-config.json
+AspNetCoreSample.sln
