@@ -15,6 +15,9 @@ param(
     [parameter()]
     [switch]
     $Azure
+
+    # .\sso-register-client.ps1
+    # .\sso-register-client.ps1 -RedirectUri "https://ubi-aspnet-core-sample.azurewebsites.net/signin-oidc" -Azure
 )
 begin {
     Import-Module "Ubisecure.OAuth2" -ErrorAction Stop
@@ -65,6 +68,9 @@ process {
     $response = $app | Set-SSOAttribute -Name "metadata" -ContentType "application/json" -Body $request
 
     if($Azure) {
+        Write-Host "OpenIdConnect:Authority = $($provider.issuer)"
+        Write-Host "OpenIdConnect:ClientId = $($response.client_id)"
+        Write-Host "OpenIdConnect:ClientSecret = $($response.client_secret)"
     } else {
         @{
 		    "OpenIdConnect" = @{
