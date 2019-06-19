@@ -1,8 +1,20 @@
 [CmdletBinding()]
 param(
-    [parameter()] [uri] $Uri = "https://login.example.ubidemo.com",
-    [parameter()] [uri] $ManageUri = "https://manage.example.ubidemo.com",
-    [parameter()] [uri] $RedirectUri = "http://localhost:19282/signin-oidc"
+    [parameter()] 
+    [uri] 
+    $Uri = "https://login.example.ubidemo.com",
+
+    [parameter()] 
+    [uri] 
+    $ManageUri = "https://manage.example.ubidemo.com",
+
+    [parameter()] 
+    [uri] 
+    $RedirectUri = "http://localhost:19282/signin-oidc",
+
+    [parameter()]
+    [switch]
+    $Azure
 )
 begin {
     Import-Module "Ubisecure.OAuth2" -ErrorAction Stop
@@ -23,7 +35,7 @@ begin {
     New-OAuthClientConfig -Json $public_client_config | New-SSOLogon -Uri $Uri -ManageUri $ManageUri -Browser "default" 
 }
 process {
-    Get-OAuthMetadata -Authority ([uri]::new($Uri, "/uas")) | ConvertTo-Json | Set-Content -Path "openid-configuration.json" -Force
+    $provider = Get-OAuthMetadata -Authority ([uri]::new($Uri, "/uas")) 
     $password1 = Get-SSOObject -Type "method" "password.1" -ErrorAction Stop
     $sms1 = Get-SSOObject -Type "method" "sms.1" -ErrorAction Stop
     $smtp1 = Get-SSOObject -Type "method" "smtp.1" -ErrorAction Stop
@@ -52,5 +64,14 @@ process {
     } | ConvertTo-Json
     $response = $app | Set-SSOAttribute -Name "metadata" -ContentType "application/json" -Body $request
 
-    $response | ConvertTo-Json | Set-Content -Path "client-config.json" -Force
+    if($Azure) {
+    } else {
+        @{
+		    "OpenIdConnect" = @{
+			    "Authority" = $provider.issuer
+			    "ClientId" = $response.client_id
+			    "ClientSecret" = $response.client_secret
+		    }
+	    } | ConvertTo-Json | Set-Content -Path "appsettings.local.json"
+    }
 }

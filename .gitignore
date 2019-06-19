@@ -5,3 +5,5 @@ obj/
 openid-configuration.json
 client-config.json
 AspNetCoreSample.sln
+appsettings.local.json
+*.csproj.user
