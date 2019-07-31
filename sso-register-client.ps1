@@ -14,7 +14,17 @@ param(
 
     [parameter()]
     [switch]
-    $Azure
+    $Azure,
+
+    [parameter(Mandatory=$false)]
+    [AllowNull()]
+    [string]
+    $ClientId,
+
+    [parameter(Mandatory=$false)]
+    [AllowNull()]
+    [string]
+    $ClientSecret
 
     # .\sso-register-client.ps1
     # .\sso-register-client.ps1 -RedirectUri "https://ubi-aspnet-core-sample.azurewebsites.net/signin-oidc" -Azure
@@ -22,20 +32,7 @@ param(
 begin {
     Import-Module "Ubisecure.OAuth2" -ErrorAction Stop
     Import-Module "Ubisecure.SSO.Management" -ErrorAction Stop
-    $public_client_config = @"
-{
-    "redirect_uris":  [
-                          "http://localhost/public",
-                          "http://localhost/spa.html"
-                      ],
-    "grant_types":  [
-                        "authorization_code"
-                    ],
-    "client_id":  "public",
-    "client_secret":  "public"
-}
-"@
-    New-OAuthClientConfig -Json $public_client_config | New-SSOLogon -Uri $Uri -ManageUri $ManageUri -Browser "default" 
+    Push-Location -Path $PSScriptRoot
 }
 process {
     $provider = Get-OAuthMetadata -Authority ([uri]::new($Uri, "/uas")) 
@@ -64,8 +61,22 @@ process {
     "grant_types"=@("authorization_code")
     "scope"="openid"
     "redirect_uris"=@($RedirectUri)
-    } | ConvertTo-Json
-    $response = $app | Set-SSOAttribute -Name "metadata" -ContentType "application/json" -Body $request
+    }
+    $query = @{}
+    if($ClientId) {
+        $request += @{
+            "client_id"=$ClientId
+        }
+        $query = @{"policy"="keep_client_credentials"}
+    }
+    if($ClientSecret) {
+        $request += @{
+            "client_secret"=$ClientSecret
+        }
+        $query = @{"policy"="keep_client_credentials"}
+    }
+    $request = $request | ConvertTo-Json
+    $response = $app | Set-SSOAttribute -Name "metadata" -ContentType "application/json" -Body $request -Query $query
 
     if($Azure) {
         Write-Host "OpenIdConnect:Authority = $($provider.issuer)"
@@ -80,4 +91,7 @@ process {
 		    }
 	    } | ConvertTo-Json | Set-Content -Path "appsettings.local.json"
     }
+}
+end {
+    Pop-Location
 }
