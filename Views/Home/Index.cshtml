@@ -1,8 +1,8 @@
-﻿@{
-}
+﻿@model System.Security.Claims.ClaimsPrincipal
+
 <h1>Welcome</h1>
 <dl>
-    @foreach (var claim in User.Claims)
+    @foreach (var claim in Model.Claims)
     {
         <dt><b>@claim.Type</b></dt>
         <dd><i>@claim.Value</i></dd>

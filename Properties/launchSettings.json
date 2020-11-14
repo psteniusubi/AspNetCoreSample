@@ -3,7 +3,7 @@
     "Default": {
       "commandName": "Project",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "local"
+        "ASPNETCORE_ENVIRONMENT": "Debug"
       },
       "applicationUrl": "http://localhost:19282"
     }
