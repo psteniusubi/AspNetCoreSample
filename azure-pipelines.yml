@@ -25,3 +25,10 @@ steps:
     targetPath: '$(Pipeline.Workspace)/publish/AspNetCoreSample'
     artifact: 'AspNetCoreSample'
     publishLocation: 'pipeline'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Petteri - MSDN'
+    appType: 'webApp'
+    WebAppName: 'ubi-aspnet-core-sample'
+    packageForLinux: '$(Pipeline.Workspace)/publish/AspNetCoreSample/**/*.zip'
