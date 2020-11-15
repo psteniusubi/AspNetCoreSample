@@ -1,4 +1,4 @@
-# ASP.NET Core 2.1 and Ubisecure SSO integration with OpenID Connect
+# ASP.NET Core 3.1 and Ubisecure SSO integration with OpenID Connect
 
 ## Configuration
 
@@ -122,11 +122,3 @@ Use Visual Studio 2019 to launch AspNetCoreSample application on http://localhos
 
 This application is also deployed live on Azure Web Apps at https://ubi-aspnet-core-sample.azurewebsites.net
 
-## References
-
-* https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.authentication.openidconnect
-* https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.builder.openidconnectoptions
-* https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.authentication.cookies
-* http://openid.net/specs/openid-connect-discovery-1_0.html
-* http://openid.net/specs/openid-connect-registration-1_0.html
-* http://openid.net/specs/openid-connect-core-1_0.html
