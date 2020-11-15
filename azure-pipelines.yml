@@ -18,7 +18,6 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: false
-    projects: AspNetCoreSample
     modifyOutputPath: false
     arguments: '--configuration $(buildConfiguration) -o $(Pipeline.Workspace)/publish/AspNetCoreSample'
 - task: PublishPipelineArtifact@1
