@@ -128,3 +128,14 @@ Use Visual Studio 2019 to launch AspNetCoreSample application on http://localhos
 
 This application is also deployed live on Azure Web Apps at https://ubi-aspnet-core-sample.azurewebsites.net
 
+### Command line
+
+You first need to install [Git tools](https://git-scm.com/downloads) and [ASP.NET Core runtime](https://dotnet.microsoft.com/download)
+
+The following will launch the application on http://localhost:19282
+
+```
+git clone https://github.com/psteniusubi/AspNetCoreSample.git
+cd AspNetCoreSample
+dotnet run
+```
