@@ -1,5 +1,11 @@
 # ASP.NET Core 3.1 and Ubisecure SSO integration with OpenID Connect
 
+## Introduction
+
+This is a sample ASP.NET Core 3.1 application to illustrate integration with OpenID Connect Auhthorization Code flow. 
+
+The [aspnet21 branch](/psteniusubi/AspNetCoreSample/tree/aspnet21) has a previous version for ASP.NET Core 2.1.
+
 ## Configuration
 
 An OpenID Connect Client needs to be configured with information about the OpenID Connect Provider and client credentials. This sample app puts these configuration items into [appsettings.json](appsettings.json) file as properties of OpenIDConnect key:
