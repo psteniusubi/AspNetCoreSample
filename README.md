@@ -4,7 +4,7 @@
 
 This is a sample ASP.NET Core 3.1 application to illustrate integration with OpenID Connect Auhthorization Code flow. 
 
-The [aspnet21 branch](/psteniusubi/AspNetCoreSample/tree/aspnet21) has a previous version for ASP.NET Core 2.1.
+The [aspnet21 branch](../../tree/aspnet21) has a previous version for ASP.NET Core 2.1.
 
 ## Configuration
 
