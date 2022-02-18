@@ -1,10 +1,10 @@
-# ASP.NET Core 3.1 and Ubisecure SSO integration with OpenID Connect
+# ASP.NET Core 5.0 and Ubisecure SSO integration with OpenID Connect
 
 ## Introduction
 
-This is a sample ASP.NET Core 3.1 application to illustrate integration with OpenID Connect Auhthorization Code flow. 
+This is a sample ASP.NET Core 5.0 application to illustrate integration with OpenID Connect Auhthorization Code flow. 
 
-The [aspnet21 branch](../../tree/aspnet21) has a previous version for ASP.NET Core 2.1.
+The [aspnet31 branch](../../tree/aspnet31) has a previous version for ASP.NET Core 3.1.
 
 ## Configuration
 
