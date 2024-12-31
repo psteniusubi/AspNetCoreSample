@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-
-namespace AspNetCoreSample.Utils
+﻿namespace AspNetCoreSample.Utils
 {
     /// <summary>
     /// Workaround for https://github.com/dotnet/aspnetcore/issues/19939
