@@ -1,8 +1,8 @@
-# ASP.NET Core 8.0 and Ubisecure SSO integration with OpenID Connect
+# ASP.NET Core 9.0 and Ubisecure SSO integration with OpenID Connect
 
 ## Introduction
 
-This is a sample ASP.NET Core 8.0 application to illustrate integration with OpenID Connect Auhthorization Code flow. 
+This is a sample ASP.NET Core 9.0 application to illustrate integration with OpenID Connect Auhthorization Code flow. 
 
 ## Configuration
 
